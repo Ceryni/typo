@@ -15,7 +15,21 @@ describe Admin::CategoriesController do
     get :index
     assert_response :redirect, :action => 'index'
   end
-
+  
+  it "new should work with no id" do
+    get :new
+    assert_response 200
+    assert_template 'new'
+    assert_tag :tag => "table", :attributes => { :id => "category_container" }
+  end
+  
+  it "new/edit should show the correct information when given an ID" do
+    category = Factory(:category)
+    get :edit, :id => category.id
+    assert_response 200
+    expect(assigns(:category)).to eq(category)
+  end
+  
   describe "test_edit" do
     before(:each) do
       get :edit, :id => Factory(:category).id

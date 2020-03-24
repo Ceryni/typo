@@ -41,6 +41,7 @@ Given /^the blog is set up$/ do
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
+  Category.create!({:name => 'Bananarama', :description => "Banana Time", :keywords => "fruit"})
 end
 
 And /^I am logged into the admin panel$/ do
